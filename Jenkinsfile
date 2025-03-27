@@ -52,7 +52,10 @@ pipeline {
         stage('Destroy') {
             steps {
                 dir('D:/Old-D-Drive/Devops-tools/Terraform/Day-3') {
-                    bat 'terraform destroy'
+                    script {
+                        echo "COMMITID: ${env.GIT_COMMIT}"
+                        bat 'echo yes | terraform destroy'
+                    }
                 }
             }
         }
